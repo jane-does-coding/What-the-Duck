@@ -28,8 +28,11 @@ const Landing = () => {
 					Make sure to have less of "What the Duck?!" moments when planning your
 					sprints, with the power of AI to help you with it!
 				</p>
+				<p className="text-center text-[2vh] px-[2vw] py-[1vh] border-[1.5px] w-fit rounded-full mt-[2vh] font-extrabold max-w-[50vw] mx-auto">
+					Made for Waystar SDLC hackathon{" "}
+				</p>
 			</div>
-			<div className="flex gap-[1vw] mt-[5vh] mx-auto items-center justify-center">
+			<div className="flex gap-[1vw] mt-[3vh] mx-auto items-center justify-center">
 				<Link href={"/register"} className="pushable">
 					<span className="front front-blue text-[2.5vh] flex items-center justify-center gap-[1vw] font-extrabold text-black">
 						<FiLogIn />

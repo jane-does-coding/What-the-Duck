@@ -74,6 +74,7 @@ export default function SprintComparisonPage() {
 			</h1>
 
 			{/* Selection Panel */}
+			{/* Selection Panel */}
 			<div className="flex flex-wrap gap-6 items-end mb-[4vh] mx-auto w-fit mt-[4vh]">
 				{["First Sprint", "Second Sprint"].map((label, idx) => {
 					const value = idx === 0 ? firstSprint : secondSprint;
@@ -89,17 +90,29 @@ export default function SprintComparisonPage() {
 								className="border-[1.5px] border-gray-500 rounded-lg p-2 hover:border-gray-400 text-[2vh]"
 							>
 								<option value="">Select Sprint</option>
-								{sprints.map((s) => (
-									<option key={s.id} value={s.id}>
-										{s.originalName || s.id}
-									</option>
-								))}
+								{sprints.map((s) => {
+									// Disable option if it's already selected in the other dropdown
+									const isDisabled =
+										(idx === 0 && s.id === secondSprint) ||
+										(idx === 1 && s.id === firstSprint);
+									return (
+										<option key={s.id} value={s.id} disabled={isDisabled}>
+											{s.originalName || s.id}
+										</option>
+									);
+								})}
 							</select>
 						</div>
 					);
 				})}
 
-				<button onClick={runComparison} className="pushable ml-[1vw]">
+				<button
+					onClick={runComparison}
+					className="pushable ml-[1vw]"
+					disabled={
+						!firstSprint || !secondSprint || firstSprint === secondSprint
+					} // extra safety
+				>
 					<span className="front front-blue text-[2vh] flex items-center justify-center gap-[1vw] font-extrabold text-black">
 						{loading ? "Comparing..." : "Compare"}
 					</span>

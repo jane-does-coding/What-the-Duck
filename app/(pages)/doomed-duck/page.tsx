@@ -1,11 +1,39 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import { redirect, useRouter } from "next/navigation";
 
 const DoomedDuckCarousel = () => {
 	const [index, setIndex] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [result, setResult] = useState<any>(null);
+	const [checkingAuth, setCheckingAuth] = useState(true);
+	/* 
+	const router = useRouter();
+
+	useEffect(() => {
+		// Check authentication
+		const checkAuth = async () => {
+			const user = await getCurrentUser();
+			if (!user) {
+				// redirect to login if not logged in
+				router.push("/login");
+			} else {
+				setCheckingAuth(false);
+			}
+		};
+		checkAuth();
+	}, [router]);
+
+	// Show loading while checking auth
+	if (checkingAuth) {
+		return (
+			<div className="flex items-center justify-center h-screen">
+				<p className="text-2xl">Checking authentication...</p>
+			</div>
+		);
+	} */
 
 	async function runPrediction() {
 		setLoading(true);
