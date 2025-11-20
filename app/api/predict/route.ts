@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 export async function GET() {
 	try {
-		const USER_ID = "675f00000000000000000000";
+		const curentUser = await getCurrentUser();
+		if (!curentUser) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+		}
+		const USER_ID = curentUser.id;
 
 		const upload = await prisma.fileUpload.findFirst({
 			where: { userId: USER_ID },
