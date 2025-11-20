@@ -28,12 +28,17 @@ You are QuackCast, the Chaos & Disaster Forecast AI.
 
 Analyze this sprint plan and return ONLY valid JSON:
 
+majorRisks has to have 4 items and each one should be 15-20 words long.
+Tasks at risk should have 3 tasks with task id and then no higher than 6 words description for each one.
+Likely Blockers should have 3 items make it so each one is like 10-15 words long.
+Recommendations should have 4 items and each one should be 15-20 words long.
+
 {
   "riskScore": number,
-  "riskLevel": "Low" | "Medium" | "High" | "DuckStorm Imminent",
+  "riskLevel": "Low" | "Medium" | "High" | "Extremely High",
   "majorRisks": string[],
   "likelyBlockers": string[],
-  "timelineConfidence": string,
+  "timelineConfidence": "Low" | "Medium" | "High" | "Extremely High",
   "bottlenecks": string[],
   "atRiskTasks": string[],
   "recommendations": string[]
