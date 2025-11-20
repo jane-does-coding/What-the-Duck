@@ -2,9 +2,18 @@ import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 import csv from "csvtojson";
 import { PdfReader } from "pdfreader";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import { UploadType } from "@prisma/client";
 
 export async function POST(req: Request) {
+	let uploadType: UploadType;
+
 	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+		}
+
 		const formData = await req.formData();
 		const file = formData.get("file") as File;
 
@@ -18,51 +27,49 @@ export async function POST(req: Request) {
 		const size = file.size;
 
 		let jsonOutput: any = {};
-		let uploadType: any = "json";
+		let uploadType = "json";
 
-		/* JSON */
+		/* Handle JSON file */
 		if (fileName.endsWith(".json")) {
 			uploadType = "json";
 			jsonOutput = JSON.parse(buffer.toString());
 		} else if (fileName.endsWith(".txt")) {
-			/* TXT */
+			/* Handle TXT file */
 			uploadType = "text";
-			jsonOutput = { text: buffer.toString("utf-8") };
+			const textContent = buffer.toString("utf-8");
+			jsonOutput = { text: textContent }; // stored as JSON object
 		} else if (fileName.endsWith(".csv")) {
-			/* CSV */
+			/* Handle CSV file */
 			uploadType = "csv";
 			jsonOutput = await csv().fromString(buffer.toString());
 		} else if (fileName.endsWith(".pdf")) {
-			/* PDF */
+			/* Handle PDF file */
 			uploadType = "pdf";
-
 			jsonOutput = await new Promise((resolve) => {
 				let textContent = "";
 				new PdfReader().parseBuffer(buffer, (err, item) => {
 					if (err) resolve({ text: "" });
 					if (item && item.text) textContent += item.text + " ";
-					if (!item) resolve({ text: textContent });
+					if (!item) resolve({ text: textContent }); // JSON object
 				});
 			});
 		} else {
-			/* Unsupported */
+			/* Unsupported file types */
 			return NextResponse.json(
 				{ error: "Unsupported file type" },
 				{ status: 400 }
 			);
 		}
 
-		// TODO: replace with real session user
-		const dummyUserId = "675f00000000000000000000";
-
+		/* Store in database */
 		const upload = await prisma.fileUpload.create({
 			data: {
 				originalName: file.name,
 				mimeType,
 				size,
-				uploadType,
+				uploadType: uploadType as UploadType,
 				jsonData: jsonOutput,
-				userId: dummyUserId,
+				userId: currentUser.id,
 			},
 		});
 

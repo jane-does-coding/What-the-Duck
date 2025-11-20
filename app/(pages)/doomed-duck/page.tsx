@@ -9,10 +9,32 @@ const DoomedDuckCarousel = () => {
 
 	async function runPrediction() {
 		setLoading(true);
-		const res = await fetch("/api/predict");
-		const data = await res.json();
-		setResult(data);
-		setLoading(false);
+		setResult(null); // clear old result
+		try {
+			const res = await fetch("/api/predict");
+
+			if (!res.ok) {
+				// non-200 HTTP status
+				const err = await res.json();
+				setResult({ error: err.error || "Unknown server error" });
+				return;
+			}
+
+			const data = await res.json();
+
+			// handle backend returning { error: "..." }
+			if (data.error) {
+				setResult({ error: data.error });
+				return;
+			}
+
+			// success
+			setResult(data);
+		} catch (e) {
+			setResult({ error: "Network error. Please try again." });
+		} finally {
+			setLoading(false);
+		}
 	}
 
 	const frames = [
@@ -63,8 +85,14 @@ const DoomedDuckCarousel = () => {
 											Sprint Overview
 										</h1>
 
+										{result?.error && (
+											<p className="text-red-600 text-[2.5vh] font-semibold">
+												{result.error}
+											</p>
+										)}
+
 										{/* INITIAL MESSAGE */}
-										{!result && !loading && (
+										{!result && !loading && !result?.error && (
 											<p className="text-[3vh] font-semibold">
 												Run prediction to load sprint analysis.
 											</p>
@@ -80,7 +108,7 @@ const DoomedDuckCarousel = () => {
 										)}
 
 										{/* CONTENT WHEN DONE */}
-										{result && !loading && (
+										{result && !loading && !result?.error && (
 											<div className="flex flex-col w-full">
 												<div className="flex mt-[1.5vh] items-center justify-between w-[90%] mx-auto gap-[1vh] text-[2.5vh] font-medium whitespace-pre-line">
 													<div className="flex gap-[1vw] items-center justify-center">
@@ -143,7 +171,7 @@ const DoomedDuckCarousel = () => {
 											Major Risks
 										</h1>
 
-										{!result && !loading && (
+										{!result && !loading && !result?.error && (
 											<p className="text-[3vh] font-semibold">
 												Run prediction to see sprint risks.
 											</p>
@@ -157,7 +185,7 @@ const DoomedDuckCarousel = () => {
 											/>
 										)}
 
-										{result && !loading && (
+										{result && !loading && !result?.error && (
 											<div className="flex flex-col gap-[2vh] text-[2.5vh] font-medium whitespace-pre-line px-[1vw]">
 												{/* <p className="font-bold text-[3vh] mb-[0.5vh]">
 													Major Risks:
@@ -182,7 +210,7 @@ const DoomedDuckCarousel = () => {
 											Recommendations
 										</h1>
 
-										{!result && !loading && (
+										{!result && !loading && !result?.error && (
 											<p className="text-[3vh] font-semibold">
 												Run prediction to load recommendations.
 											</p>
@@ -196,7 +224,7 @@ const DoomedDuckCarousel = () => {
 											/>
 										)}
 
-										{result && !loading && (
+										{result && !loading && !result?.error && (
 											<div className="flex flex-col gap-[1.5vh] text-[2.5vh] font-medium whitespace-pre-line">
 												{result.prediction.recommendations.map(
 													(r: string, idx: number) => (

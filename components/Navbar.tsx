@@ -87,10 +87,13 @@ const Navbar = ({ currentUser }: any) => {
 				</div>
 				<div className="w-full flex items-center justify-center px-[4vw] mt-[1vh]">
 					<div className="flex flex-col w-[50%]">
-						<h2 className="hand text-[9vh] leading-[7vh] mt-[1vh] flex items-center gap-[1vw]">
+						<Link
+							href={"/"}
+							className="hand text-[9vh] leading-[7vh] mt-[1vh] flex items-center gap-[1vw]"
+						>
 							<img src="/ducky.png" className="w-[8vw]" alt="Ducky logo" />
 							What the Duck?!
-						</h2>
+						</Link>
 						<p className="handlee font-extrabold text-[3vh] mt-[1.5vh]">
 							Make sure to have less of What the Duck?! moments in your workflow
 							by planning sprints smart with AI!

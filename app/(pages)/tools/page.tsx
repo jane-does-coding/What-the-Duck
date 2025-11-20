@@ -59,7 +59,7 @@ const page = () => {
 							<img
 								src="/duck-boat.png"
 								className="w-[10vw] scale-x-[-1]"
-								alt=""
+								alt="hello"
 							/>
 						</div>
 						<div

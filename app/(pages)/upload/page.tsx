@@ -27,7 +27,12 @@ export default function UploadPage() {
 	return (
 		<div className="min-h-screen flex flex-col items-center justify-center p-6">
 			<div className="flex flex-col translate-y-[-10vh] items-center justify-center">
-				<h1 className="text-[10vh] mb-6 hand">Upload Sprint Plan</h1>
+				<h1 className="text-[10vh] leading-[10vh] mb-6 hand">
+					Upload Sprint Plan
+				</h1>
+				<p className="text-[2.5vh] font-extrabold mb-[3vh]">
+					Supported file types: .csv, .json, .pdf, .txt
+				</p>
 				<div className="border p-6 rounded-xl bg-white shadow-md w-full max-w-lg">
 					<input
 						type="file"
