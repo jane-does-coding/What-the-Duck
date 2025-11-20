@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { FiLink, FiLinkedin } from "react-icons/fi";
+import { FiLink, FiLinkedin, FiLogIn } from "react-icons/fi";
 import { RiGithubLine } from "react-icons/ri";
 import ParallaxDivider from "./ParallaxDivider";
+import { VscTools } from "react-icons/vsc";
 
 const Landing = () => {
 	return (
@@ -29,22 +30,22 @@ const Landing = () => {
 				</p>
 			</div>
 			<div className="flex gap-[1vw] mt-[5vh] mx-auto items-center justify-center">
-				<Link href={"/"} className="pushable">
+				<Link href={"/register"} className="pushable">
 					<span className="front front-blue text-[2.5vh] flex items-center justify-center gap-[1vw] font-extrabold text-black">
-						<RiGithubLine />
-						Github
+						<FiLogIn />
+						Register
 					</span>
 				</Link>
-				<Link href={"/"} className="pushable">
+				<Link href={"/upload"} className="pushable">
 					<span className="front front-orange text-[2.5vh] flex items-center justify-center gap-[1vw] font-extrabold">
-						<FiLinkedin />
-						Linkedin
+						<VscTools />
+						File Upload
 					</span>
 				</Link>
-				<Link href={"/"} className="pushable">
+				<Link href={"/tools"} className="pushable">
 					<span className="front front-white text-[2.5vh] flex items-center justify-center gap-[1vw] font-extrabold">
 						<FiLink />
-						The Platform
+						The Tools
 					</span>
 				</Link>
 			</div>

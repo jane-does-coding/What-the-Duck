@@ -33,8 +33,7 @@ const Navbar = ({ currentUser }: any) => {
 							alt="ducky"
 						/>
 						<p className="text-[2vh] w-full font-extrabold mx-[1vw]">
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis
-							cum ducimus vel quibusdam nulla repellat.
+							The sprint rollover percentages are 30%, let's fix it!
 						</p>
 						<img
 							src="/ducky.png"
@@ -42,8 +41,47 @@ const Navbar = ({ currentUser }: any) => {
 							alt="ducky"
 						/>
 						<p className="text-[2vh] w-full font-extrabold mx-[1vw]">
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis
-							cum ducimus vel quibusdam nulla repellat.
+							The sprint rollover percentages are 30%, let's fix it!
+						</p>
+						<img
+							src="/ducky.png"
+							className="h-[5vh] mb-[1.5vh] mx-[0.25vw]"
+							alt="ducky"
+						/>
+						<p className="text-[2vh] w-full font-extrabold mx-[1vw]">
+							The sprint rollover percentages are 30%, let's fix it!
+						</p>
+						<img
+							src="/ducky.png"
+							className="h-[5vh] mb-[1.5vh] mx-[0.25vw]"
+							alt="ducky"
+						/>
+						<p className="text-[2vh] w-full font-extrabold mx-[1vw]">
+							The sprint rollover percentages are 30%, let's fix it!
+						</p>
+						<img
+							src="/ducky.png"
+							className="h-[5vh] mb-[1.5vh] mx-[0.25vw]"
+							alt="ducky"
+						/>
+						<p className="text-[2vh] w-full font-extrabold mx-[1vw]">
+							The sprint rollover percentages are 30%, let's fix it!
+						</p>
+						<img
+							src="/ducky.png"
+							className="h-[5vh] mb-[1.5vh] mx-[0.25vw]"
+							alt="ducky"
+						/>
+						<p className="text-[2vh] w-full font-extrabold mx-[1vw]">
+							The sprint rollover percentages are 30%, let's fix it!
+						</p>
+						<img
+							src="/ducky.png"
+							className="h-[5vh] mb-[1.5vh] mx-[0.25vw]"
+							alt="ducky"
+						/>
+						<p className="text-[2vh] w-full font-extrabold mx-[1vw]">
+							The sprint rollover percentages are 30%, let's fix it!
 						</p>
 					</Marquee>
 				</div>
@@ -54,8 +92,8 @@ const Navbar = ({ currentUser }: any) => {
 							What the Duck?!
 						</h2>
 						<p className="handlee font-extrabold text-[3vh] mt-[1.5vh]">
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla
-							soluta necessitatibus inventore nostrum reiciendis nam.
+							Make sure to have less of What the Duck?! moments in your workflow
+							by planning sprints smart with AI!
 						</p>
 					</div>
 					<div className="flex flex-col w-[17.5%] z-50 ml-auto pt-[2vh]">
@@ -64,15 +102,27 @@ const Navbar = ({ currentUser }: any) => {
 						</h2>
 						<Link
 							className="w-fit text-[2.5vh] font-extrabold"
-							href={"/platform"}
+							href={"/doomed-duck"}
 						>
-							Platform
+							Doomed Duck
 						</Link>
-						<Link className="w-fit text-[2.5vh] font-extrabold" href={"/about"}>
-							About
+						<Link
+							className="w-fit text-[2.5vh] font-extrabold"
+							href={"/duck-it"}
+						>
+							Duck it, it's Unclear
 						</Link>
-						<Link className="w-fit text-[2.5vh] font-extrabold" href={"/faq"}>
-							FAQ
+						<Link
+							className="w-fit text-[2.5vh] font-extrabold"
+							href={"/duck-2-duck"}
+						>
+							Duck 2 Duck
+						</Link>
+						<Link
+							className="w-fit text-[2.5vh] font-extrabold"
+							href={"/duck-2-duck"}
+						>
+							Duck Probability
 						</Link>
 					</div>
 					<div className="flex flex-col w-fit z-50 pt-[2vh]">
@@ -81,11 +131,17 @@ const Navbar = ({ currentUser }: any) => {
 						</h2>
 						{currentUser ? (
 							<>
-								<Link className="w-fit text-[2.5vh] font-extrabold" href={"/"}>
-									Learn More
+								<Link
+									className="w-fit text-[2.5vh] font-extrabold"
+									href={"/upload"}
+								>
+									File Upload
 								</Link>
-								<Link className="w-fit text-[2.5vh] font-extrabold" href={"/"}>
-									Platform
+								<Link
+									className="w-fit text-[2.5vh] font-extrabold"
+									href={"/tools"}
+								>
+									Tools
 								</Link>
 								<Link
 									onClick={() => signOut()}
@@ -111,13 +167,6 @@ const Navbar = ({ currentUser }: any) => {
 									href={"/login"}
 								>
 									Login
-								</Link>
-								<Link
-									onClick={() => signOut()}
-									className="w-fit text-[2.5vh] font-extrabold"
-									href={"/"}
-								>
-									Logout test Purposees
 								</Link>
 							</>
 						)}

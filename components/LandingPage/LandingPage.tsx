@@ -9,7 +9,7 @@ import ParallaxDividerReverse from "./ParallaxDividerReverse";
 
 const LandingPage = () => {
 	const sampletext =
-		"FaceScape is an interactive AI website  _image2_ that reacts to your emotions in real-time using your webcam. _image_ Watch background and content shift based on mood while learning how AI works. _image3_ It's easier to get started with AI than you think!";
+		"What the Duck is an AI-powered sprint analyzer _image2_ that detects chaos risks, vague requirements, and anti-patterns in your workflow. _image_ With rollover rates hovering around 30%, the goal is to reduce sprint waste and improve team predictability. _image3_";
 
 	return (
 		<div className="flex flex-col pt-[0vh] w-full overflow-x-hidden">

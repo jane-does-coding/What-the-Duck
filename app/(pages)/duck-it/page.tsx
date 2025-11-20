@@ -98,7 +98,7 @@ function Section({ title, items }: { title: string; items?: string[] }) {
 			{/* Panel BEHIND content */}
 			<img
 				src="/panel.png"
-				className="absolute top-0 left-0 w-full h-full z-0"
+				className="absolute top-0 left-0 w-full h-full z-0 opacity-75"
 				alt=""
 			/>
 		</div>

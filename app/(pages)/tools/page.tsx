@@ -49,7 +49,7 @@ const page = () => {
 						</div>
 					</Link>
 					<Link
-						href={"/"}
+						href={"/duck-it"}
 						className="relative w-[35vw] h-[25vw] flex items-center justify-center group"
 					>
 						<div
@@ -82,13 +82,18 @@ const page = () => {
 							</p>
 						</div>
 					</Link>
-					<div className="relative w-[35vw] h-[25vw] flex items-center justify-center">
-						<div className="absolute bottom-[2vh] right-[5vw] duck-shadow rotate-12 z-20">
+					<Link
+						href={"/"}
+						className="relative w-[35vw] h-[25vw] flex items-center justify-center group"
+					>
+						<div className="absolute bottom-[2vh] right-[5vw] duck-shadow rotate-12 z-20 transition-all duration-300 ease-in-out group-hover:-translate-y-8 group-hover:rotate-[20deg] group-hover:right-[2vw]">
 							<img src="/duck-skate.png" className="w-[8vw]" alt="" />
 						</div>
-						<div className="absolute top-[-2vh] left-[2vw] duck-shadow rotate-12 z-20">
+
+						<div className="absolute top-[-2vh] left-[2vw] duck-shadow rotate-12 z-20 transition-all duration-300 ease-in-out group-hover:-translate-y-[1vh] group-hover:rotate-[-10deg] group-hover:left-[0vw]">
 							<img src="/ducky-stamp.png" className="w-[8vw]" alt="" />
 						</div>
+
 						<img
 							src="/leaf-frame.png"
 							className="w-[35vw] absolute top-0 left-0"
@@ -102,7 +107,7 @@ const page = () => {
 								Sprint to Sprint risk Comparison
 							</p>
 						</div>
-					</div>
+					</Link>
 				</div>
 				<div className="absolute right-[5vw] top-[50%] translate-y-[-50%] ">
 					<h1 className="hand text-[14vh] leading-[13vh]">T</h1>
