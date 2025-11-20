@@ -39,16 +39,17 @@ export default function UnclearAnalysisPage() {
 				SDLC anti-practices.
 			</p>
 
-			<div className="mt-[1vh] h-[10vh] flex items-center justify-center">
+			{/* Button OR Loader */}
+			<div className="mt-[1vh] flex items-center justify-center">
 				{loading ? (
 					<img src="/loader.gif" className="w-[10vh] h-[10vh]" alt="loading" />
-				) : (
+				) : !result ? (
 					<button onClick={analyze} className="pushable">
 						<span className="front front-blue text-[2.5vh] flex items-center justify-center gap-[1vw] font-extrabold text-black">
 							Analyze Sprint
 						</span>
 					</button>
-				)}
+				) : null}
 			</div>
 
 			{/* Error */}
@@ -60,7 +61,7 @@ export default function UnclearAnalysisPage() {
 
 			{/* Results */}
 			{result && (
-				<div className="mt-10 w-full max-w-3xl space-y-6">
+				<div className="w-[80vw] gap-x-[5vw] gap-y-[3vw] grid grid-cols-2 mt-[3vh]">
 					<Section title="Anti-Practices" items={result.antiPractices} />
 					<Section
 						title="Unclear Descriptions"
@@ -83,13 +84,23 @@ function Section({ title, items }: { title: string; items?: string[] }) {
 	if (!items || items.length === 0) return null;
 
 	return (
-		<div className="border rounded-xl p-6">
-			<h2 className="text-2xl font-semibold mb-3">{title}</h2>
-			<ul className="list-disc list-inside space-y-2">
-				{items.map((i, idx) => (
-					<li key={idx}>{i}</li>
-				))}
-			</ul>
+		<div className="rounded-xl relative w-full aspect-3/2 p-[1vw] overflow-visible">
+			{/* Text on top */}
+			<div className="relative z-10 p-[2vw]">
+				<h2 className="text-2xl font-semibold mb-3">{title}</h2>
+				<ul className="list-disc list-inside space-y-2 font-extrabold text-[2vh]">
+					{items.map((i, idx) => (
+						<li key={idx}>{i}</li>
+					))}
+				</ul>
+			</div>
+
+			{/* Panel BEHIND content */}
+			<img
+				src="/panel.png"
+				className="absolute top-0 left-0 w-full h-full z-0"
+				alt=""
+			/>
 		</div>
 	);
 }

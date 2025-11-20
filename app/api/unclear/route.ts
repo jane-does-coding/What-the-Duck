@@ -4,9 +4,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function GET() {
 	try {
-		const USER_ID = "675f00000000000000000000"; // TEMP STATIC
+		const USER_ID = "675f00000000000000000000";
 
-		// 1. Pull latest uploaded sprint JSON
 		const upload = await prisma.fileUpload.findFirst({
 			where: { userId: USER_ID },
 			orderBy: { createdAt: "desc" },
@@ -21,16 +20,16 @@ export async function GET() {
 
 		const sprintJson = upload.jsonData;
 
-		// 2. Gemini setup
 		const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 		const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
-		// 3. Prompt
 		const prompt = `
 You are "Duck It, It’s Unclear" — an AI that finds vague sprint descriptions,
 missing details, anti-practices, and unclear planning behavior.
 
 Return ONLY JSON in this exact format:
+
+make sure it has 4 items in each array and each item is 15-20 words long.
 
 {
   "antiPractices": string[],
@@ -59,7 +58,6 @@ Sprint Data:
 ${JSON.stringify(sprintJson)}
     `;
 
-		// 4. Run model
 		const result = await model.generateContent(prompt);
 		const response = await result.response;
 		const raw = response.text();
