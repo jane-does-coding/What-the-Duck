@@ -1,0 +1,210 @@
+{
+	"sprint": {
+		"id": "SPR-2025-Q1-07",
+		"name": "Q1 Sprint 3 – Reliability & Feature Enhancements",
+		"team": "Platform Engineering",
+		"teamMembers": [
+			{
+				"name": "Jane Alvarez",
+				"role": "Frontend Engineer",
+				"notes": "Strong with React + graphs"
+			},
+			{
+				"name": "Marcus Lee",
+				"role": "Backend Lead",
+				"notes": ""
+			},
+			{
+				"name": "Priya Desai",
+				"role": "SRE",
+				"notes": "Primary on-call this sprint"
+			},
+			{
+				"name": "Tom Richardson",
+				"role": "QA Engineer",
+				"notes": "Specializes in API-level testing"
+			}
+		],
+		"quarter": "Q1 2025",
+		"startDate": "2025-02-03",
+		"endDate": "2025-02-17",
+		"sprintGoals": [
+			"Improve reliability of the deployment pipeline by reducing flaky tests by 40%.",
+			"Release the new Milestone Analytics feature to internal beta.",
+			"Increase observability coverage in the backend services by 30%."
+		],
+		"riskRegister": [
+			{
+				"id": "R1",
+				"title": "Flaky E2E tests may block release pipeline",
+				"owner": "QA Team",
+				"tag": "Accepted",
+				"impact": "High",
+				"mitigation": "Add retries + isolate frequently failing specs."
+			},
+			{
+				"id": "R2",
+				"title": "Milestone Analytics depends on upstream API changes",
+				"owner": "Backend",
+				"tag": "Owned",
+				"impact": "Medium",
+				"mitigation": "Backend team prioritizing the schema update early in sprint."
+			},
+			{
+				"id": "R3",
+				"title": "Increased logging could increase storage costs",
+				"owner": "SRE",
+				"tag": "Mitigated",
+				"impact": "Low",
+				"mitigation": "Add retention policy + compression."
+			}
+		],
+		"features": [
+			{
+				"id": "FEAT-102",
+				"type": "milestone",
+				"title": "Milestone Analytics Dashboard",
+				"owner": "Frontend",
+				"status": "In Progress",
+				"dependencies": ["API-231"],
+				"tasks": [
+					{
+						"id": "TASK-4001",
+						"title": "Design dashboard layout (Figma)",
+						"assignee": "Jane Alvarez",
+						"order": 1,
+						"status": "Done",
+						"storyPoints": 2
+					},
+					{
+						"id": "TASK-4002",
+						"title": "Implement initial components (charts, filters)",
+						"assignee": "Jane Alvarez",
+						"order": 2,
+						"status": "In Progress",
+						"storyPoints": 5
+					},
+					{
+						"id": "TASK-4003",
+						"title": "Integrate with Milestone API",
+						"assignee": "Marcus Lee",
+						"order": 3,
+						"status": "Blocked",
+						"blockedBy": "API-231",
+						"storyPoints": 3
+					},
+					{
+						"id": "TASK-4004",
+						"title": "Add unit tests + regression coverage",
+						"assignee": "Tom Richardson",
+						"order": 4,
+						"status": "Todo",
+						"storyPoints": 2
+					}
+				]
+			},
+			{
+				"id": "FEAT-204",
+				"type": "feature",
+				"title": "Deployment Pipeline Reliability Improvements",
+				"owner": "SRE",
+				"status": "In Progress",
+				"dependencies": [],
+				"tasks": [
+					{
+						"id": "TASK-4021",
+						"title": "Identify top 10 flaky tests",
+						"assignee": "Tom Richardson",
+						"order": 1,
+						"status": "Done",
+						"storyPoints": 1
+					},
+					{
+						"id": "TASK-4022",
+						"title": "Implement retry logic in CI",
+						"assignee": "Priya Desai",
+						"order": 2,
+						"status": "In Progress",
+						"storyPoints": 3
+					},
+					{
+						"id": "TASK-4023",
+						"title": "Add failure pattern detection using logs",
+						"assignee": "Priya Desai",
+						"order": 3,
+						"status": "Todo",
+						"storyPoints": 5
+					}
+				]
+			},
+			{
+				"id": "FEAT-310",
+				"type": "dependency",
+				"title": "Milestone API Schema Update",
+				"owner": "Backend",
+				"status": "In Progress",
+				"tasks": [
+					{
+						"id": "TASK-4101",
+						"title": "Add new analytics fields to API",
+						"assignee": "Marcus Lee",
+						"order": 1,
+						"status": "In Progress",
+						"storyPoints": 3
+					},
+					{
+						"id": "TASK-4102",
+						"title": "Update OpenAPI spec",
+						"assignee": "Marcus Lee",
+						"order": 2,
+						"status": "Todo",
+						"storyPoints": 1
+					},
+					{
+						"id": "TASK-4103",
+						"title": "Notify frontend of schema changes",
+						"assignee": "Marcus Lee",
+						"order": 3,
+						"status": "Todo",
+						"storyPoints": 1
+					}
+				]
+			}
+		],
+		"backlog": [
+			{
+				"id": "BL-900",
+				"title": "Add custom time ranges to dashboard",
+				"type": "feature",
+				"storyPoints": 5,
+				"status": "Backlog"
+			},
+			{
+				"id": "BL-901",
+				"title": "Upgrade to Node 22",
+				"type": "tech-debt",
+				"storyPoints": 3,
+				"status": "Backlog"
+			},
+			{
+				"id": "BL-902",
+				"title": "Improve notifications service resilience",
+				"type": "reliability",
+				"storyPoints": 8,
+				"status": "Backlog"
+			}
+		],
+		"progressSummary": {
+			"totalPoints": 39,
+			"completedPoints": 6,
+			"inProgressPoints": 16,
+			"todoPoints": 17,
+			"velocityProjection": 31,
+			"burnDown": {
+				"daysRemaining": 9,
+				"expectedRemainingPoints": 24,
+				"actualRemainingPoints": 33
+			}
+		}
+	}
+}
