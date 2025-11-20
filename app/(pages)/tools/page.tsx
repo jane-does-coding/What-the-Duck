@@ -28,7 +28,7 @@ const page = () => {
 						</div>
 					</Link>
 					<Link
-						href={"/"}
+						href={"/simulator"}
 						className="relative w-[35vw] h-[25vw] flex items-center justify-center group"
 					>
 						<div className="absolute bottom-[-2vh] duck-shadow right-[-2vw] rotate-12 z-20 transition-all duration-300 ease-in-out group-hover:-translate-y-10 group-hover:rotate-[20deg] group-hover:right-[0vw]">
@@ -83,7 +83,7 @@ const page = () => {
 						</div>
 					</Link>
 					<Link
-						href={"/"}
+						href={"/duck-2-duck"}
 						className="relative w-[35vw] h-[25vw] flex items-center justify-center group"
 					>
 						<div className="absolute bottom-[2vh] right-[5vw] duck-shadow rotate-12 z-20 transition-all duration-300 ease-in-out group-hover:-translate-y-8 group-hover:rotate-[20deg] group-hover:right-[2vw]">

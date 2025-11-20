@@ -123,7 +123,7 @@ const Navbar = ({ currentUser }: any) => {
 						</Link>
 						<Link
 							className="w-fit text-[2.5vh] font-extrabold"
-							href={"/duck-2-duck"}
+							href={"/simulator"}
 						>
 							Duck Probability
 						</Link>

@@ -1,13 +1,16 @@
 // app/api/simulator/route.ts
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
-export async function GET() {
-	// Get userId from auth or query
-	// const { searchParams } = new URL(req.url);
+export async function GET(req: Request) {
+	const currentUser = await getCurrentUser();
+	if (!currentUser) {
+		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+	}
+	const USER_ID = currentUser.id;
 
-	const USER_ID = "675f00000000000000000000"; // TEMP STATIC
-
+	// Fetch the latest sprint upload
 	const upload = await prisma.fileUpload.findFirst({
 		where: { userId: USER_ID },
 		orderBy: { createdAt: "desc" },
@@ -20,39 +23,58 @@ export async function GET() {
 		);
 	}
 
-	const sprintData = upload.jsonData; // Already parsed JSON
+	// Ensure jsonData is an object
+	const sprintDataRaw = upload.jsonData;
+	const sprintData =
+		typeof sprintDataRaw === "object" && sprintDataRaw !== null
+			? sprintDataRaw
+			: {};
 
-	function simulateScore(sprint: any): number {
-		// example “realistic chaos model”
+	// Define some “what-if” scenarios (safe, finite number)
+	const scenarios = [
+		{ name: "Base Case", adjust: {} },
+		{ name: "High Complexity", adjust: { complexity: 8 } },
+		{ name: "Low Team Experience", adjust: { teamExperience: 2 } },
+		{ name: "Many Blockers", adjust: { blockers: 5 } },
+		{ name: "High Risk", adjust: { riskFactor: 8 } },
+		{ name: "Fast Velocity", adjust: { velocity: 8 } },
+	];
+
+	// Simulation function
+	function simulateScore(sprint: Record<string, any>) {
 		const complexity = sprint.complexity ?? 5;
 		const teamExperience = sprint.teamExperience ?? 5;
 		const blockers = sprint.blockers ?? 0;
+		const velocity = sprint.velocity ?? 5;
+		const riskFactor = sprint.riskFactor ?? 5;
 
-		// randomness for chaos
-		const randomFactor = Math.random() * 20 - 10; // -10 to +10 swing
+		const baseScore =
+			50 +
+			teamExperience * 4 -
+			complexity * 3 -
+			blockers * 4 +
+			velocity * 2 -
+			riskFactor * 2;
 
-		let score =
-			50 + teamExperience * 5 - complexity * 3 - blockers * 4 + randomFactor;
+		const chaos = Math.random() * 15 - 7.5; // random swing
+		const score = baseScore + chaos;
 
 		return Math.max(0, Math.min(100, Math.round(score)));
 	}
 
-	const distribution: number[] = [];
-
-	for (let i = 0; i < 1000; i++) {
-		distribution.push(simulateScore(sprintData));
+	// Run simulations
+	const results: Record<string, number[]> = {};
+	for (const scenario of scenarios) {
+		const dist: number[] = [];
+		for (let i = 0; i < 1000; i++) {
+			const sprint = {
+				...(sprintData as Record<string, any>),
+				...scenario.adjust,
+			};
+			dist.push(simulateScore(sprint));
+		}
+		results[scenario.name] = dist;
 	}
 
-	const best = Math.max(...distribution);
-	const worst = Math.min(...distribution);
-	const mostLikely = Math.round(
-		distribution.reduce((a, b) => a + b, 0) / distribution.length
-	);
-
-	return NextResponse.json({
-		distribution,
-		best,
-		worst,
-		mostLikely,
-	});
+	return NextResponse.json(results);
 }
