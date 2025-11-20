@@ -59,9 +59,14 @@ export default function UploadPage() {
 				alt=""
 			/>
 			{result && (
-				<pre className="mt-6 p-4 bg-neutral-900 text-white rounded-xl w-full max-w-2xl overflow-auto text-sm">
+				<>
+					{/* <pre className="mt-6 p-4 bg-neutral-900 text-white rounded-xl w-full max-w-2xl overflow-auto text-sm">
 					{result}
-				</pre>
+				</pre> */}
+					<h3 className="text-[2.5vh] font-extrabold">
+						File Uploaded Successfully!
+					</h3>
+				</>
 			)}
 		</div>
 	);
