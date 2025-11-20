@@ -39,9 +39,11 @@ export default function UploadPage() {
 					<button
 						onClick={handleUpload}
 						disabled={loading || !file}
-						className="px-4 py-2 bg-black text-white rounded-md"
+						className="pushable w-full"
 					>
-						{loading ? "Uploading..." : "Upload File"}
+						<span className="front front-blue text-[2.5vh] flex items-center justify-center gap-[1vw] font-extrabold text-black">
+							{loading ? "Uploading..." : "Upload File"}
+						</span>
 					</button>
 				</div>
 			</div>

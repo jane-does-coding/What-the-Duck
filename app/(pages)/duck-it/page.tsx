@@ -34,18 +34,22 @@ export default function UnclearAnalysisPage() {
 				Duck It, It's Unclear
 			</h1>
 
-			<p className="text-neutral-800 font-extrabold mb-8 text-center max-w-xl text-[2.5vh]">
+			<p className="text-neutral-800 font-extrabold mb-0 text-center max-w-xl text-[2.5vh]">
 				Identify vague sprint descriptions, missing details, contradictions, and
 				SDLC anti-practices.
 			</p>
 
-			<button
-				onClick={analyze}
-				disabled={loading}
-				className="px-6 py-3 bg-yellow-400 text-black rounded-xl font-semibold hover:bg-yellow-300 transition disabled:opacity-40"
-			>
-				{loading ? "Analyzing..." : "Analyze Sprint"}
-			</button>
+			<div className="mt-[1vh] h-[10vh] flex items-center justify-center">
+				{loading ? (
+					<img src="/loader.gif" className="w-[10vh] h-[10vh]" alt="loading" />
+				) : (
+					<button onClick={analyze} className="pushable">
+						<span className="front front-blue text-[2.5vh] flex items-center justify-center gap-[1vw] font-extrabold text-black">
+							Analyze Sprint
+						</span>
+					</button>
+				)}
+			</div>
 
 			{/* Error */}
 			{error && (
