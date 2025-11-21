@@ -8,5 +8,5 @@ Make sure to have less of "What the Duck?!" moments when planning your sprints, 
 
 ## Languages & Technologies:
 
-[![My Skills](https://skillicons.dev/icons?i=css,ts,py,tailwind,mongodb,react,nextjs,prisma)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=css,ts,tailwind,mongodb,react,nextjs,prisma)](https://skillicons.dev)
 Powered by Gemini!
