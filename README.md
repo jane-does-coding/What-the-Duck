@@ -9,4 +9,45 @@ Make sure to have less of "What the Duck?!" moments when planning your sprints, 
 ## Languages & Technologies:
 
 [![My Skills](https://skillicons.dev/icons?i=css,ts,tailwind,mongodb,react,nextjs,prisma)](https://skillicons.dev)
+
 Powered by Gemini!
+
+
+
+
+---
+
+## Setup
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/jane-does-coding/What-the-Duck
+cd what-the-duck
+```
+
+### 2. Install the dependencies
+
+```bash
+npm i
+```
+
+### 3. Configure .env
+
+```bash
+DATABASE_URL="your mongodb"
+NEXTAUTH_SECRET="random-secret"
+GEMINI_API_KEY="gemini api key"
+```
+
+### 4. Setup Prisma
+
+```bash
+npx prisma generate
+```
+
+### 4. Run the project
+
+```bash
+npm run dev
+```
