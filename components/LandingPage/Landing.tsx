@@ -29,7 +29,7 @@ const Landing = () => {
 					sprints, with the power of AI to help you with it!
 				</p>
 				<p className="text-center text-[2vh] px-[2vw] py-[1vh] border-[1.5px] w-fit rounded-full mt-[2vh] font-extrabold max-w-[50vw] mx-auto">
-					Made for LUMA Startathon 2025
+					Made for Waystar Hack the SDLC
 				</p>
 			</div>
 			<div className="flex gap-[1vw] mt-[3vh] mx-auto items-center justify-center">
